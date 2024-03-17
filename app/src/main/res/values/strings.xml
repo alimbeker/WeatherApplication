@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">WeatherApplication</string>
+    <string name="get_current_weather">get current weather\n</string>
+</resources>
