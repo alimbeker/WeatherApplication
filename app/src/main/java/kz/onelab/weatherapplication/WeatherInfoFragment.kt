@@ -39,4 +39,9 @@ class WeatherInfoFragment : Fragment() {
         return binding.root
     }
 
+    override fun onDestroy() {
+        list = emptyList()
+        super.onDestroy()
+    }
+
 }
