@@ -16,7 +16,7 @@ class WeatherRepositoryImpl @Inject constructor(
     private val api: WeatherApi
 ): WeatherRepository {
     override suspend fun getCurrentWeather(city: String): WeatherResponse? {
-        val response = api.getCurrentWeather(city, "ru")
+        val response = api.getCurrentWeather(city, "en")
         if (response.isSuccessful) return response.body()
         else throw Exception(response.errorBody().getErrorMessage())
     }
