@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import kz.onelab.weatherapplication.api.WeatherResponse
 import kz.onelab.weatherapplication.databinding.ViewToolbarBinding
 
@@ -29,6 +30,7 @@ class WeatherAdapter : ListAdapter<WeatherResponse, WeatherAdapter.WeatherViewHo
                 temperature.text = "${weather.current?.temp}°"
                 wind.text = "Wind: ${weather?.current?.wind} km/h"
                 daytime.text = "${if (weather?.current?.isDay == 1) "day" else "night"}"
+                weatherCondition.text = weather?.current?.condition?.text
 
             }
         }
