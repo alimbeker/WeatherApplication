@@ -7,11 +7,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import kz.onelab.weatherapplication.R
 import kz.onelab.weatherapplication.api.WeatherResponse
 import kz.onelab.weatherapplication.databinding.ViewToolbarBinding
 
 
-class WeatherAdapter : ListAdapter<WeatherResponse, WeatherAdapter.WeatherViewHolder>(WeatherDiffCallback()) {
+class WeatherAdapter :
+    ListAdapter<WeatherResponse, WeatherAdapter.WeatherViewHolder>(WeatherDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeatherViewHolder {
         val binding = ViewToolbarBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -23,7 +25,8 @@ class WeatherAdapter : ListAdapter<WeatherResponse, WeatherAdapter.WeatherViewHo
         holder.bind(weather)
     }
 
-    inner class WeatherViewHolder(private val binding: ViewToolbarBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class WeatherViewHolder(private val binding: ViewToolbarBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(weather: WeatherResponse) {
             binding.apply {
                 location.text = "${weather?.location?.name}, ${weather?.location?.country}"
@@ -33,6 +36,7 @@ class WeatherAdapter : ListAdapter<WeatherResponse, WeatherAdapter.WeatherViewHo
                 weatherCondition.text = weather?.current?.condition?.text
 
             }
+
         }
     }
 }

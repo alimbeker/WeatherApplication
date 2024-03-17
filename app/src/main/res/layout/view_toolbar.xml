@@ -24,7 +24,7 @@
         android:layout_height="160dp"
         android:layout_gravity="right"
         android:layout_marginEnd="5dp"
-        tools:src="@drawable/moon_cloud" />
+        android:src="@drawable/moon_cloud" />
 
     <TextView
         android:id="@+id/wind"
