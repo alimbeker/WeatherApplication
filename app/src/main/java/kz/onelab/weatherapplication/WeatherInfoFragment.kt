@@ -15,6 +15,8 @@ import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import kz.onelab.weatherapplication.databinding.FragmentWeatherInfoBinding
 import java.text.SimpleDateFormat
+import androidx.navigation.fragment.findNavController
+
 
 @AndroidEntryPoint
 class WeatherInfoFragment : Fragment() {
@@ -38,6 +40,10 @@ class WeatherInfoFragment : Fragment() {
                 viewModel.getCurrentWeather(binding.cityInput.text.toString())
             }
             else Toast.makeText(this.context, "Input city name", Toast.LENGTH_SHORT).show()
+        }
+
+        binding.navigate.setOnClickListener {
+            findNavController().navigate(R.id.action_weatherInfoFragment_to_weatherListFragment)
         }
         setUpData()
         setUpLoader()

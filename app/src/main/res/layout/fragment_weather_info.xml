@@ -34,6 +34,15 @@
       android:gravity="center"
       android:textAllCaps="true" />
 
+  <com.google.android.material.button.MaterialButton
+      android:id="@+id/navigate"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginHorizontal="16dp"
+      android:text="navigate"
+      android:gravity="center"
+      android:textAllCaps="true" />
+
   <ProgressBar
       android:id="@+id/loading"
       android:layout_width="40dp"

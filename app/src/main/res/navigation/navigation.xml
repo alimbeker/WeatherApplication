@@ -9,5 +9,14 @@
         android:id="@+id/weatherInfoFragment"
         android:name="kz.onelab.weatherapplication.WeatherInfoFragment"
         android:label="WeatherInfoFragment"
-        tools:layout="@layout/fragment_weather_info"/>
+        tools:layout="@layout/fragment_weather_info">
+        <action
+            android:id="@+id/action_weatherInfoFragment_to_weatherListFragment"
+            app:destination="@id/weatherListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/weatherListFragment"
+        android:name="kz.onelab.weatherapplication.WeatherListFragment"
+        android:label="fragment_weather_list"
+        tools:layout="@layout/fragment_weather_list" />
 </navigation>
