@@ -1,5 +1,6 @@
 package kz.onelab.weatherapplication
 
+import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -20,11 +21,12 @@ class MainViewModel @Inject constructor(
 
 ) {
 
+
     private var _currentWeatherLiveData = MutableLiveData<WeatherResponse?>()
     val currentWeatherLiveData: LiveData<WeatherResponse?> = _currentWeatherLiveData
 
     private val weatherList = ArrayList<WeatherResponse?>()
-    private val _weatherListLiveData = MutableLiveData<List<WeatherResponse?>>()
+    private var _weatherListLiveData = MutableLiveData<List<WeatherResponse?>>()
     val weatherListLiveData: LiveData<List<WeatherResponse?>> = _weatherListLiveData
     fun getCurrentWeather(city: String) {
         launch(request = {
@@ -33,8 +35,10 @@ class MainViewModel @Inject constructor(
             _currentWeatherLiveData.postValue(it)
             weatherList.add(it)
             _weatherListLiveData.postValue(weatherList)
+            Log.d(">>>>>>>", "Initial weatherList: $weatherList")
         })
     }
+
 
 }
 
