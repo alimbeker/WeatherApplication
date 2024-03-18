@@ -17,8 +17,9 @@ import kz.onelab.weatherapplication.databinding.FragmentWeatherListBinding
 @AndroidEntryPoint
 class WeatherListFragment : Fragment() {
     private lateinit var binding: FragmentWeatherListBinding
+    private lateinit var adapter: WeatherAdapter
     private lateinit var viewModel: MainViewModel
-    private var list = emptyList<WeatherResponse>()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,25 +29,18 @@ class WeatherListFragment : Fragment() {
 
 
         val recyclerView = binding.weatherRecyclerView
-        val adapter = WeatherAdapter()
+        adapter = WeatherAdapter()
         recyclerView.adapter = adapter
 
+        viewModel.weatherListLiveData.observe(viewLifecycleOwner) {
+            adapter.submitList(it)
+        }
 
         recyclerView.layoutManager = LinearLayoutManager(this.context)
+        adapter.notifyDataSetChanged()
         recyclerView.setHasFixedSize(true)
 
-        viewModel.currentWeatherLiveData.observe(viewLifecycleOwner) { weatherResponse ->
-            weatherResponse?.let {
-                list = list.toMutableList().apply { add(it) }
-                adapter.submitList(list.toList())
-            }
-        }
         return binding.root
-    }
-
-    override fun onDestroy() {
-        list = emptyList()
-        super.onDestroy()
     }
 
 }

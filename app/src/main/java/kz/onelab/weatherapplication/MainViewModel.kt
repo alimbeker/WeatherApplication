@@ -23,14 +23,19 @@ class MainViewModel @Inject constructor(
     private var _currentWeatherLiveData = MutableLiveData<WeatherResponse?>()
     val currentWeatherLiveData: LiveData<WeatherResponse?> = _currentWeatherLiveData
 
-
+    private val weatherList = ArrayList<WeatherResponse?>()
+    private val _weatherListLiveData = MutableLiveData<List<WeatherResponse?>>()
+    val weatherListLiveData: LiveData<List<WeatherResponse?>> = _weatherListLiveData
     fun getCurrentWeather(city: String) {
         launch(request = {
             repository.getCurrentWeather(city)
         }, onSuccess = {
             _currentWeatherLiveData.postValue(it)
+            weatherList.add(it)
+            _weatherListLiveData.postValue(weatherList)
         })
     }
+
 }
 
 abstract class BaseViewModel : ViewModel() {
