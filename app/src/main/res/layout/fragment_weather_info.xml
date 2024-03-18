@@ -1,14 +1,210 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".WeatherInfoFragment">
+    android:background="@color/white"
+    android:orientation="vertical">
 
-  <androidx.recyclerview.widget.RecyclerView
-      android:id="@+id/weatherRecyclerView"
+  <com.google.android.material.textfield.TextInputLayout
       android:layout_width="match_parent"
-      android:layout_height="match_parent"/>
+      android:layout_height="wrap_content"
+      android:layout_margin="16dp"
+      android:hint="Input city name"
+      app:boxBackgroundMode="outline"
+      app:boxStrokeColor="@color/mainNemo"
+      app:boxStrokeWidth="2dp">
 
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/city_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textCapSentences"
+        android:textColor="@color/mainNemo"
+        android:textColorHint="#757575" />
+  </com.google.android.material.textfield.TextInputLayout>
 
-</FrameLayout>
+  <com.google.android.material.button.MaterialButton
+      android:id="@+id/current"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginHorizontal="16dp"
+      android:text="@string/get_current_weather"
+      android:gravity="center"
+      android:textAllCaps="true" />
+
+  <ProgressBar
+      android:id="@+id/loading"
+      android:layout_width="40dp"
+      android:layout_height="40dp"
+      android:layout_gravity="center"
+      android:visibility="gone" />
+
+  <androidx.core.widget.NestedScrollView
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      tools:ignore="SpeakableTextPresentCheck">
+
+    <LinearLayout
+        android:id="@+id/weather_box"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="invisible">
+
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="4dp"
+          android:paddingHorizontal="16dp"
+          android:text="Location"
+          android:textColor="@color/mainNemo"
+          android:textSize="24sp"
+          android:textStyle="bold" />
+
+      <TextView
+          android:id="@+id/city"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="@color/mainNemo"
+          android:paddingHorizontal="16dp"
+          android:textColor="@color/white"
+          android:textSize="18sp" />
+
+      <TextView
+          android:id="@+id/region"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="@color/mainNemo"
+          android:paddingHorizontal="16dp"
+          android:textColor="@color/white"
+          android:textSize="18sp" />
+
+      <TextView
+          android:id="@+id/contry"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="@color/mainNemo"
+          android:paddingHorizontal="16dp"
+          android:textColor="@color/white"
+          android:textSize="18sp" />
+
+      <TextView
+          android:id="@+id/coors"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="@color/mainNemo"
+          android:paddingHorizontal="16dp"
+          android:textColor="@color/white"
+          android:textSize="18sp" />
+
+      <TextView
+          android:id="@+id/time_zone"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="@color/mainNemo"
+          android:paddingHorizontal="16dp"
+          android:textColor="@color/white"
+          android:textSize="18sp" />
+
+      <TextView
+          android:id="@+id/local_time"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="@color/mainNemo"
+          android:paddingHorizontal="16dp"
+          android:paddingBottom="8dp"
+          android:textColor="@color/white"
+          android:textSize="18sp" />
+
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="16dp"
+          android:layout_marginBottom="4dp"
+          android:paddingHorizontal="16dp"
+          android:text="Current weather"
+          android:textColor="@color/mainNemo"
+          android:textSize="24sp"
+          android:textStyle="bold" />
+
+      <TextView
+          android:id="@+id/last_update"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="@color/mainNemo"
+          android:paddingHorizontal="16dp"
+          android:textColor="@color/white"
+          android:textSize="18sp" />
+
+      <TextView
+          android:id="@+id/temp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="@color/mainNemo"
+          android:paddingHorizontal="16dp"
+          android:textColor="@color/white"
+          android:textSize="18sp" />
+
+      <TextView
+          android:id="@+id/is_day"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="@color/mainNemo"
+          android:paddingHorizontal="16dp"
+          android:textColor="@color/white"
+          android:textSize="18sp" />
+
+      <TextView
+          android:id="@+id/wind"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="@color/mainNemo"
+          android:paddingHorizontal="16dp"
+          android:textColor="@color/white"
+          android:textSize="18sp" />
+
+      <TextView
+          android:id="@+id/wind_degree"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="@color/mainNemo"
+          android:paddingHorizontal="16dp"
+          android:textColor="@color/white"
+          android:textSize="18sp" />
+
+      <TextView
+          android:id="@+id/wind_direction"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="@color/mainNemo"
+          android:paddingHorizontal="16dp"
+          android:textColor="@color/white"
+          android:textSize="18sp" />
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="@color/mainNemo"
+          android:orientation="horizontal"
+          android:paddingHorizontal="16dp"
+          android:paddingBottom="8dp">
+
+        <ImageView
+            android:id="@+id/condition_icon"
+            android:layout_width="150dp"
+            android:layout_height="150dp" />
+
+        <TextView
+            android:id="@+id/condition_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+      </LinearLayout>
+    </LinearLayout>
+  </androidx.core.widget.NestedScrollView>
+</LinearLayout>
