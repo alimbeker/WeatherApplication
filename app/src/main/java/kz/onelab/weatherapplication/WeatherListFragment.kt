@@ -5,14 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import kz.onelab.weatherapplication.adapter.WeatherAdapter
-import kz.onelab.weatherapplication.api.WeatherResponse
-import kz.onelab.weatherapplication.databinding.FragmentWeatherInfoBinding
 import kz.onelab.weatherapplication.databinding.FragmentWeatherListBinding
 
 
@@ -28,6 +24,10 @@ class WeatherListFragment : Fragment() {
     ): View? {
         binding = FragmentWeatherListBinding.inflate(inflater,container,false)
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+
+
+        val args = WeatherListFragmentArgs.fromBundle(requireArguments())
+        viewModel.getAllData(args.city)
 
         setupRecyclerView()
 

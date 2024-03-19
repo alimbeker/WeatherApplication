@@ -25,11 +25,10 @@ class WeatherInfoFragment : Fragment() {
 
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentWeatherInfoBinding.inflate(inflater,container,false)
+        binding = FragmentWeatherInfoBinding.inflate(inflater, container, false)
 
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
@@ -38,13 +37,13 @@ class WeatherInfoFragment : Fragment() {
                 binding.weatherBox.isVisible = false
                 binding.root.hideKeyboard()
                 viewModel.getCurrentWeather(binding.cityInput.text.toString())
-            }
-            else Toast.makeText(this.context, "Input city name", Toast.LENGTH_SHORT).show()
+            } else Toast.makeText(this.context, "Input city name", Toast.LENGTH_SHORT).show()
         }
 
         binding.navigate.setOnClickListener {
             findNavController().navigate(
-                WeatherInfoFragmentDirections.actionWeatherInfoFragmentToWeatherListFragment(it.city)
+                WeatherInfoFragmentDirections.actionWeatherInfoFragmentToWeatherListFragment(binding.cityInput.text.toString())
+            )
         }
         setUpData()
         setUpLoader()
@@ -87,8 +86,7 @@ class WeatherInfoFragment : Fragment() {
                 windDirection.text = "Wind direction: ${it?.current?.windDirection}"
                 conditionText.text = it?.current?.condition?.text
 
-                Glide.with(this@WeatherInfoFragment)
-                    .load("https:${it?.current?.condition?.icon}")
+                Glide.with(this@WeatherInfoFragment).load("https:${it?.current?.condition?.icon}")
                     .into(conditionIcon)
             }
         }
