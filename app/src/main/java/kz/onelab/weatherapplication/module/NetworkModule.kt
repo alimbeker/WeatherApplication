@@ -12,12 +12,12 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 @Module
 object NetworkModule {
-
+    private const val BASE_URL = "https://api.weatherapi.com/v1/"
     @Provides
     @Singleton
     fun getRetrofit(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://api.weatherapi.com/v1/")
+            .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
