@@ -29,12 +29,6 @@ class WeatherListFragment : Fragment() {
         binding = FragmentWeatherListBinding.inflate(inflater,container,false)
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
-        binding.current.setOnClickListener {
-            if (!binding.cityInput.text.isNullOrBlank()) {
-                viewModel.getAllData(binding.cityInput.text.toString())
-            }
-            else Toast.makeText(this.context, "Input city name", Toast.LENGTH_SHORT).show()
-        }
         setupRecyclerView()
 
         return binding.root

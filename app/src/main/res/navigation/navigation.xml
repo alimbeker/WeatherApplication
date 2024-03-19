@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--suppress NavigationFile -->
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -18,5 +19,12 @@
         android:id="@+id/weatherListFragment"
         android:name="kz.onelab.weatherapplication.WeatherListFragment"
         android:label="fragment_weather_list"
-        tools:layout="@layout/fragment_weather_list" />
+        tools:layout="@layout/fragment_weather_list">
+        <argument
+            android:name="current"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_weatherListFragment_to_weatherInfoFragment"
+            app:destination="@id/weatherInfoFragment" />
+    </fragment>
 </navigation>

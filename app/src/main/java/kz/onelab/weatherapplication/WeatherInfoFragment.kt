@@ -43,7 +43,8 @@ class WeatherInfoFragment : Fragment() {
         }
 
         binding.navigate.setOnClickListener {
-            findNavController().navigate(R.id.action_weatherInfoFragment_to_weatherListFragment)
+            findNavController().navigate(
+                WeatherInfoFragmentDirections.actionWeatherInfoFragmentToWeatherListFragment(it.city)
         }
         setUpData()
         setUpLoader()
