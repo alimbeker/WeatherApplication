@@ -1,6 +1,5 @@
 package kz.onelab.weatherapplication
 
-import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -37,11 +36,14 @@ class MainViewModel @Inject constructor(
     }
 
     fun getAllData(city: String) {
-        launch(request = {
-            repository.getAllData(city)
-        }, onSuccess = {
-            _weatherListLiveData.postValue(it)
-        })
+        val coroutineScope = CoroutineScope(Dispatchers.IO + Job())
+        coroutineScope.launch {
+            try {
+                repository.getCurrentWeather(city)
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
     }
 
 }

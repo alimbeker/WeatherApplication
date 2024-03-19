@@ -22,20 +22,19 @@ import androidx.navigation.fragment.findNavController
 class WeatherInfoFragment : Fragment() {
     private lateinit var binding: FragmentWeatherInfoBinding
     private lateinit var viewModel: MainViewModel
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentWeatherInfoBinding.inflate(inflater, container, false)
 
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
         binding.current.setOnClickListener {
             if (!binding.cityInput.text.isNullOrBlank()) {
                 binding.weatherBox.isVisible = false
                 binding.root.hideKeyboard()
+
                 viewModel.getCurrentWeather(binding.cityInput.text.toString())
             } else Toast.makeText(this.context, "Input city name", Toast.LENGTH_SHORT).show()
         }

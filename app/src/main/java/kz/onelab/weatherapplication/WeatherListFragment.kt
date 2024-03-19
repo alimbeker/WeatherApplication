@@ -23,7 +23,7 @@ class WeatherListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentWeatherListBinding.inflate(inflater,container,false)
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
 
         val args = WeatherListFragmentArgs.fromBundle(requireArguments())
