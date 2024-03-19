@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,20 +29,29 @@ class WeatherListFragment : Fragment() {
         binding = FragmentWeatherListBinding.inflate(inflater,container,false)
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
-
-        val recyclerView = binding.weatherRecyclerView
-        adapter = WeatherAdapter()
-        recyclerView.adapter = adapter
-
-        viewModel.weatherListLiveData.observe(viewLifecycleOwner) {
-            adapter.submitList(it)
+        binding.current.setOnClickListener {
+            if (!binding.cityInput.text.isNullOrBlank()) {
+                viewModel.getAllData(binding.cityInput.text.toString())
+            }
+            else Toast.makeText(this.context, "Input city name", Toast.LENGTH_SHORT).show()
         }
-
-        recyclerView.layoutManager = LinearLayoutManager(this.context)
-        adapter.notifyDataSetChanged()
-        recyclerView.setHasFixedSize(true)
+        setupRecyclerView()
 
         return binding.root
+    }
+
+    private fun setupRecyclerView() {
+        adapter = WeatherAdapter()
+
+        binding.weatherRecyclerView.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = this@WeatherListFragment.adapter
+            setHasFixedSize(true)
+        }
+
+        viewModel.weatherListLiveData.observe(viewLifecycleOwner) { weatherList ->
+            adapter.submitList(weatherList?.items)
+        }
     }
 
 }

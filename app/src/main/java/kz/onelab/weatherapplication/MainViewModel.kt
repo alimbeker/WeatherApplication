@@ -11,6 +11,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kz.onelab.weatherapplication.api.WeatherResponse
+import kz.onelab.weatherapplication.api.WeatherResponseList
 import kz.onelab.weatherapplication.repository.WeatherRepository
 import javax.inject.Inject
 
@@ -25,21 +26,23 @@ class MainViewModel @Inject constructor(
     private var _currentWeatherLiveData = MutableLiveData<WeatherResponse?>()
     val currentWeatherLiveData: LiveData<WeatherResponse?> = _currentWeatherLiveData
 
-    private val weatherList = ArrayList<WeatherResponse?>()
-    private var _weatherListLiveData = MutableLiveData<List<WeatherResponse?>>()
-    val weatherListLiveData: LiveData<List<WeatherResponse?>> = _weatherListLiveData
+    private var _weatherListLiveData = MutableLiveData<WeatherResponseList?>()
+    val weatherListLiveData: LiveData<WeatherResponseList?> = _weatherListLiveData
     fun getCurrentWeather(city: String) {
         launch(request = {
             repository.getCurrentWeather(city)
         }, onSuccess = {
             _currentWeatherLiveData.postValue(it)
-            weatherList.add(it)
-            _weatherListLiveData.postValue(weatherList)
-            Log.d(">>>>>>>", "Initial weatherList: $weatherList")
         })
     }
 
-
+    fun getAllData(city: String) {
+        launch(request = {
+            repository.getAllData(city)
+        }, onSuccess = {
+            _weatherListLiveData.postValue(it)
+        })
+    }
 
 }
 
