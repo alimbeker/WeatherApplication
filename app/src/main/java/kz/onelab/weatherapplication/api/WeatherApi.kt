@@ -14,7 +14,8 @@ interface WeatherApi {
     ): Response<WeatherResponse>
     @GET("current.json?key=bf4dc83bbe114579817143928230611")
     fun getAllData(
-
+        @Query("q") city: String,
+        @Query("lang") language: String
     ): Call<List<WeatherResponse>>
 
 }
