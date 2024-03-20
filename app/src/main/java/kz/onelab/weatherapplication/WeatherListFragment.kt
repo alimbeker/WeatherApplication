@@ -55,9 +55,15 @@ class WeatherListFragment : Fragment() {
 
         viewModel.weatherListLiveData.observe(viewLifecycleOwner) { newWeather ->
             newWeather?.let {
-                adapter.addWeather(it)
+                weatherList.add(it)
+                adapter.submitList(weatherList)
             }
         }
     }
 
+    companion object {
+        val weatherList = mutableListOf<WeatherResponse>()
+    }
+
 }
+
