@@ -36,14 +36,11 @@ class MainViewModel @Inject constructor(
     }
 
     fun getAllData(city: String) {
-        val coroutineScope = CoroutineScope(Dispatchers.IO + Job())
-        coroutineScope.launch {
-            try {
-                repository.getCurrentWeather(city)
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-        }
+        launch(request = {
+            repository.getAllData(city)
+        }, onSuccess = {
+            _weatherListLiveData.postValue(it)
+        })
     }
 
 }
