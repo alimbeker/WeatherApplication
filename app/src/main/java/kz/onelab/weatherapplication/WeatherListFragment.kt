@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import kz.onelab.weatherapplication.adapter.WeatherAdapter
+import kz.onelab.weatherapplication.api.WeatherResponse
 import kz.onelab.weatherapplication.databinding.FragmentWeatherListBinding
 
 
@@ -18,6 +19,7 @@ class WeatherListFragment : Fragment() {
     private lateinit var binding: FragmentWeatherListBinding
     private lateinit var adapter: WeatherAdapter
     private lateinit var viewModel: MainViewModel
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,8 +53,10 @@ class WeatherListFragment : Fragment() {
             setHasFixedSize(true)
         }
 
-        viewModel.weatherListLiveData.observe(viewLifecycleOwner) { weatherList ->
-            adapter.submitList(weatherList)
+        viewModel.weatherListLiveData.observe(viewLifecycleOwner) { newWeather ->
+            newWeather?.let {
+                adapter.addWeather(it)
+            }
         }
     }
 

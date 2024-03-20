@@ -14,7 +14,7 @@ import kz.onelab.weatherapplication.databinding.ViewToolbarBinding
 
 class WeatherAdapter :
     ListAdapter<WeatherResponse, WeatherAdapter.WeatherViewHolder>(WeatherDiffCallback()) {
-
+    private val weatherList = mutableListOf<WeatherResponse>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeatherViewHolder {
         val binding = ViewToolbarBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return WeatherViewHolder(binding)
@@ -23,6 +23,11 @@ class WeatherAdapter :
     override fun onBindViewHolder(holder: WeatherViewHolder, position: Int) {
         val weather = getItem(position)
         holder.bind(weather)
+    }
+
+    fun addWeather(weather: WeatherResponse) {
+        weatherList.add(weather)
+        submitList(weatherList)
     }
 
     inner class WeatherViewHolder(private val binding: ViewToolbarBinding) :
