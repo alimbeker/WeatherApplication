@@ -27,11 +27,11 @@ object NetworkModule {
     }
 
     // API response interceptor
-    val loggingInterceptor = HttpLoggingInterceptor()
+    private val loggingInterceptor = HttpLoggingInterceptor()
         .setLevel(HttpLoggingInterceptor.Level.BODY)
 
     // Client
-    val client = OkHttpClient.Builder()
+    private val client = OkHttpClient.Builder()
         .addInterceptor(loggingInterceptor)
         .build()
 
