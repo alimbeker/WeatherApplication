@@ -16,6 +16,6 @@ interface WeatherApi {
     suspend fun getAllData(
         @Query("q") city: String,
         @Query("lang") language: String
-    ): Response<WeatherResponseList>
+    ): Call<WeatherResponseList>
 
 }
