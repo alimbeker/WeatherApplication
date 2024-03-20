@@ -15,6 +15,7 @@ import javax.inject.Singleton
 @Module
 object NetworkModule {
     private const val BASE_URL = "https://api.weatherapi.com/v1/"
+    const val API_KEY = "9756abb3465d414db22182052241903"
     @Provides
     @Singleton
     fun getRetrofit(): Retrofit {
@@ -40,4 +41,5 @@ object NetworkModule {
         return retrofit
             .create(WeatherApi::class.java)
     }
+
 }
