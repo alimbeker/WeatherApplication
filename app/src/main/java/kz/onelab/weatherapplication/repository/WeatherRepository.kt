@@ -6,6 +6,9 @@ import kz.onelab.weatherapplication.api.WeatherApiError
 import kz.onelab.weatherapplication.api.WeatherResponse
 import kz.onelab.weatherapplication.api.WeatherResponseList
 import okhttp3.ResponseBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import javax.inject.Inject
 
 
@@ -24,10 +27,24 @@ class WeatherRepositoryImpl @Inject constructor(
         else throw Exception(response.errorBody().getErrorMessage())
     }
 
-    override suspend fun getAllData(city: String): WeatherResponseList? {
+    override suspend fun getAllData(city: String, language: String, callback: (WeatherResponseList?) -> Unit) {
         val call = api.getAllData(city, "en")
-        if (call.isSuccessful) return call.body()
-        else throw Exception(call.errorBody().getErrorMessage())
+        call.enqueue(object : Callback<WeatherResponseList> {
+            override fun onResponse(call: Call<WeatherResponseList>, response: Response<WeatherResponseList>) {
+                if (response.isSuccessful) {
+                    val data = response.body()
+                    callback(data)
+                } else {
+                    // Обработка неудачного ответа, если необходимо
+                    // Возможно, здесь вы захотите передать null или обработать иным способом
+                    callback(null)
+                }
+            }
+
+            override fun onFailure(call: Call<WeatherResponseList>, t: Throwable) {
+                t.printStackTrace()
+            }
+        })
     }
 }
 
