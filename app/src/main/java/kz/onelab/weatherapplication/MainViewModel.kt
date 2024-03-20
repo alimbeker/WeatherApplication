@@ -37,9 +37,9 @@ class MainViewModel @Inject constructor(
 
     fun getAllData(city: String) {
         launch(request = {
-            repository.getCurrentWeather(city)
+            repository.getAllData(city)
         }, onSuccess = {
-            _currentWeatherLiveData.postValue(it)
+            _weatherListLiveData.postValue(it)
         })
     }
 
