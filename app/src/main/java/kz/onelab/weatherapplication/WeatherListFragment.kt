@@ -44,7 +44,7 @@ class WeatherListFragment : Fragment() {
         }
 
         viewModel.weatherListLiveData.observe(viewLifecycleOwner) { weatherList ->
-            adapter.submitList(weatherList?.items)
+            adapter.submitList(weatherList)
         }
     }
 
