@@ -19,6 +19,6 @@ interface WeatherApi {
         @Query("key") key: String = NetworkModule.API_KEY,
         @Query("q") city: String,
         @Query("lang") language: String,
-    ): Call<WeatherResponseList>
+    ): Response<WeatherResponseList>
 
 }

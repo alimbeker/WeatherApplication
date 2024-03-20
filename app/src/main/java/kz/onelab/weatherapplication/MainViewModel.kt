@@ -35,6 +35,14 @@ class MainViewModel @Inject constructor(
         })
     }
 
+    fun getAllData(city: String) {
+        launch(request = {
+            repository.getCurrentWeather(city)
+        }, onSuccess = {
+            _currentWeatherLiveData.postValue(it)
+        })
+    }
+
 }
 
 abstract class BaseViewModel : ViewModel() {
