@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/weatherInfoFragment"
-        android:name="kz.onelab.weatherapplication.WeatherInfoFragment"
+        android:name="kz.onelab.weatherapplication.presentation.WeatherInfoFragment"
         android:label="WeatherInfoFragment"
         tools:layout="@layout/fragment_weather_info">
         <action
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/weatherListFragment"
-        android:name="kz.onelab.weatherapplication.WeatherListFragment"
+        android:name="kz.onelab.weatherapplication.presentation.WeatherListFragment"
         android:label="fragment_weather_list"
         tools:layout="@layout/fragment_weather_list">
         <argument

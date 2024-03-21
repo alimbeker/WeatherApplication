@@ -1,4 +1,4 @@
-package kz.onelab.weatherapplication.api
+package kz.onelab.weatherapplication.data.model
 
 import com.google.gson.annotations.SerializedName
 

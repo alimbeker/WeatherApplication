@@ -1,4 +1,4 @@
-package kz.onelab.weatherapplication
+package kz.onelab.weatherapplication.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
