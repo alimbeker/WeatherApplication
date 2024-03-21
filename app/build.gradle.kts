@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -10,6 +12,11 @@ android {
     namespace = "kz.onelab.weatherapplication"
     compileSdk = 34
 
+    val apikeyPropertiesFile = rootProject.file("apikey.properties")
+    val apikeyProperties = Properties().apply {
+        load(apikeyPropertiesFile.inputStream())
+    }
+
     defaultConfig {
         applicationId = "kz.onelab.weatherapplication"
         minSdk = 27
@@ -18,6 +25,9 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "WEATHER_API_KEY", apikeyProperties["WEATHER_API_KEY"] as String)
+
     }
 
     buildTypes {
@@ -28,7 +38,16 @@ android {
                 "proguard-rules.pro"
             )
         }
+        
+        debug {
+            buildConfigField("String", "BASE_URL", "\"https://api.weatherapi.com/v1/\"")
+        }
+
+        release {
+            buildConfigField("String", "BASE_URL", "\"https://api.weatherapi.com/v1/\"")
+        }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
@@ -38,6 +57,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 }
 
