@@ -1,4 +1,4 @@
-package kz.onelab.weatherapplication
+package kz.onelab.weatherapplication.presentation
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -17,7 +17,6 @@ import kz.onelab.weatherapplication.databinding.FragmentWeatherInfoBinding
 import java.text.SimpleDateFormat
 import androidx.navigation.fragment.findNavController
 
-
 @AndroidEntryPoint
 class WeatherInfoFragment : Fragment() {
     private lateinit var binding: FragmentWeatherInfoBinding
@@ -25,9 +24,12 @@ class WeatherInfoFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         binding = FragmentWeatherInfoBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
         binding.current.setOnClickListener {
@@ -47,8 +49,6 @@ class WeatherInfoFragment : Fragment() {
         setUpData()
         setUpLoader()
         setUpError()
-
-        return binding.root
     }
 
 
