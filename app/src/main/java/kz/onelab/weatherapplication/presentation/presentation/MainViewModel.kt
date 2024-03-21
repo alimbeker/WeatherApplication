@@ -1,4 +1,4 @@
-package kz.onelab.weatherapplication
+package kz.onelab.weatherapplication.presentation
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -9,16 +9,14 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import kz.onelab.weatherapplication.api.WeatherResponse
-import kz.onelab.weatherapplication.repository.WeatherRepository
+import kz.onelab.weatherapplication.data.model.WeatherResponse
+import kz.onelab.weatherapplication.data.repository.WeatherRepository
 import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val repository: WeatherRepository
-) : BaseViewModel(
-
-) {
+) : BaseViewModel() {
 
 
     private var _currentWeatherLiveData = MutableLiveData<WeatherResponse?>()

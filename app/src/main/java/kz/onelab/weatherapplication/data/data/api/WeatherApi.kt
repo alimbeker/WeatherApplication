@@ -1,13 +1,17 @@
-package kz.onelab.weatherapplication.api
+package kz.onelab.weatherapplication.data.api
 
+import kz.onelab.weatherapplication.data.model.WeatherResponse
 import kz.onelab.weatherapplication.module.NetworkModule
-import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface WeatherApi {
 
+    /**
+     * Убери response, Возвращай WeatherResponse
+     * посмотри примеры прошлого урока (5 урок)
+     */
     @GET("current.json")
     suspend fun getCurrentWeather(
         @Query("key") key: String = NetworkModule.API_KEY,

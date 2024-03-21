@@ -1,14 +1,12 @@
-package kz.onelab.weatherapplication.adapter
+package kz.onelab.weatherapplication.presentation.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import kz.onelab.weatherapplication.R
-import kz.onelab.weatherapplication.api.WeatherResponse
+import kz.onelab.weatherapplication.data.model.WeatherResponse
 import kz.onelab.weatherapplication.databinding.ViewToolbarBinding
 
 
