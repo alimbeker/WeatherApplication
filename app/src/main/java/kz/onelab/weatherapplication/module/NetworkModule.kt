@@ -11,6 +11,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 import kz.onelab.weatherapplication.BuildConfig
+import kz.onelab.weatherapplication.core.QueryInterceptor
 
 @InstallIn(SingletonComponent::class)
 @Module

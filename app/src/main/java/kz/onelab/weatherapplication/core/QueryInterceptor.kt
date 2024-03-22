@@ -1,4 +1,4 @@
-package kz.onelab.weatherapplication.module
+package kz.onelab.weatherapplication.core
 
 import okhttp3.Interceptor
 import okhttp3.Response
