@@ -1,4 +1,4 @@
-package kz.onelab.weatherapplication.presentation
+package kz.onelab.weatherapplication.presentation.presentation
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -13,10 +13,12 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
-import kz.onelab.weatherapplication.databinding.FragmentWeatherInfoBinding
 import java.text.SimpleDateFormat
 import androidx.navigation.fragment.findNavController
 import kz.onelab.weatherapplication.data.repository.toPresentation
+import kz.onelab.weatherapplication.databinding.FragmentWeatherInfoBinding
+import kz.onelab.weatherapplication.presentation.MainViewModel
+import kz.onelab.weatherapplication.presentation.WeatherInfoFragmentDirections
 
 @AndroidEntryPoint
 class WeatherInfoFragment : Fragment() {
