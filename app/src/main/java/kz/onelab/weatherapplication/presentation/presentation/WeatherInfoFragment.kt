@@ -16,6 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kz.onelab.weatherapplication.databinding.FragmentWeatherInfoBinding
 import java.text.SimpleDateFormat
 import androidx.navigation.fragment.findNavController
+import kz.onelab.weatherapplication.data.repository.toPresentation
 
 @AndroidEntryPoint
 class WeatherInfoFragment : Fragment() {
@@ -66,26 +67,27 @@ class WeatherInfoFragment : Fragment() {
 
     @SuppressLint("SetTextI18n")
     private fun setUpData() {
-        viewModel.currentWeatherLiveData.observe(viewLifecycleOwner) {
+        viewModel.currentWeatherLiveData.observe(viewLifecycleOwner) { weatherResponse ->
+            val weatherInfo = weatherResponse?.toPresentation()
             with(binding) {
-                weatherBox.isVisible = it != null
+                weatherBox.isVisible = weatherInfo != null
 
-                city.text = "City: ${it?.location?.name}"
-                region.text = "Region: ${it?.location?.region}"
-                contry.text = "Country: ${it?.location?.country}"
-                coors.text = "Coors: ${it?.location?.lat}, ${it?.location?.lon}"
-                timeZone.text = "Time zone: ${it?.location?.timeZone}"
-                localTime.text = "Time: ${it?.location?.localtime?.getDateTime()}"
+                city.text = "City: ${weatherInfo?.name}"
+                region.text = "Region: ${weatherInfo?.region}"
+                country.text = "Country: ${weatherInfo?.country}"
+                coords.text = "Coords: ${weatherInfo?.lat}, ${weatherInfo?.lon}"
+                timeZone.text = "Time zone: ${weatherInfo?.timeZone}"
+                localTime.text = "Time: ${weatherInfo?.localtime?.getDateTime()}"
 
-                lastUpdate.text = "Last update: ${it?.current?.lastUpdate?.getDateTime()}"
-                temp.text = "Temperature: ${it?.current?.temp}"
-                isDay.text = "Is day: ${if (it?.current?.isDay == 1) "true" else "false"}"
-                wind.text = "Wind: ${it?.current?.wind}"
-                windDegree.text = "Wind degree: ${it?.current?.windDegree}"
-                windDirection.text = "Wind direction: ${it?.current?.windDirection}"
-                conditionText.text = it?.current?.condition?.text
+                lastUpdate.text = "Last update: ${weatherInfo?.lastUpdate?.getDateTime()}"
+                temp.text = "Temperature: ${weatherInfo?.temp}"
+                isDay.text = "Is day: ${if (weatherInfo?.isDay == 1) "true" else "false"}"
+                wind.text = "Wind: ${weatherInfo?.wind}"
+                windDegree.text = "Wind degree: ${weatherInfo?.windDegree}"
+                windDirection.text = "Wind direction: ${weatherInfo?.windDirection}"
+                conditionText.text = weatherInfo?.condition?.text
 
-                Glide.with(this@WeatherInfoFragment).load("https:${it?.current?.condition?.icon}")
+                Glide.with(this@WeatherInfoFragment).load("https:${weatherInfo?.condition?.icon}")
                     .into(conditionIcon)
             }
         }
