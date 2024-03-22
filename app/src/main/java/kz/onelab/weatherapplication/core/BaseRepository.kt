@@ -1,7 +1,8 @@
 package kz.onelab.weatherapplication.core
 
 import android.util.Log
-import kz.onelab.weatherapplication.core.State
+import kz.onelab.weatherapplication.core.functional.State
+
 open class BaseRepository {
 
     protected suspend fun <T : Any> apiCall(call: suspend () -> T): State<Throwable, T> =

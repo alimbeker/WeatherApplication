@@ -12,6 +12,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kz.onelab.weatherapplication.presentation.presentation.adapter.WeatherAdapter
 import kz.onelab.weatherapplication.data.model.WeatherResponse
 import kz.onelab.weatherapplication.databinding.FragmentWeatherListBinding
+import kz.onelab.weatherapplication.presentation.presentation.MainViewModel
 
 
 @AndroidEntryPoint
