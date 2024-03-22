@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName
 import kz.onelab.weatherapplication.data.model.WeatherCondition
 
 // добавь нужные для показа поля
+//сделано
 data class WeatherInfo(
     val name: String? = null,//  "Almaty",
     val region: String? = null,//  "Almaty City",

@@ -1,5 +1,6 @@
-package kz.onelab.weatherapplication.presentation.adapter
+package kz.onelab.weatherapplication.presentation.presentation.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -24,15 +25,16 @@ class WeatherAdapter :
 
     inner class WeatherViewHolder(private val binding: ViewToolbarBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        @SuppressLint("SetTextI18n")
         fun bind(weather: WeatherResponse) {
             binding.apply {
-                location.text = "${weather?.location?.name}, ${weather?.location?.country}"
+                location.text = "${weather.location?.name}, ${weather.location?.country}"
                 temperature.text = "${weather.current?.temp}°"
-                wind.text = "Wind: ${weather?.current?.wind} km/h"
-                daytime.text = "${if (weather?.current?.isDay == 1) "day" else "night"}"
-                weatherCondition.text = weather?.current?.condition?.text
+                wind.text = "Wind: ${weather.current?.wind} km/h"
+                daytime.text = if (weather.current?.isDay == 1) "day" else "night"
+                weatherCondition.text = weather.current?.condition?.text
                 Glide.with(binding.root.context)
-                    .load("https:${weather?.current?.condition?.icon}")
+                    .load("https:${weather.current?.condition?.icon}")
                     .into(weatherConditionIcon)
             }
 

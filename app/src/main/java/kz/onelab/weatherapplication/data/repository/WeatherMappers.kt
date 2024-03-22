@@ -4,6 +4,7 @@ import kz.onelab.weatherapplication.data.model.WeatherResponse
 import kz.onelab.weatherapplication.presentation.model.WeatherInfo
 
 // здесь мапишь нужные поля в WeatherInfo
+//сделано
 fun WeatherResponse.toPresentation(): WeatherInfo = WeatherInfo(
     name = location?.name,
     region = location?.region,
