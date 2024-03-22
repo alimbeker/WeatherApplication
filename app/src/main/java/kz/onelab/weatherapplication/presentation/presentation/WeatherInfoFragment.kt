@@ -15,9 +15,9 @@ import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import androidx.navigation.fragment.findNavController
+import kz.onelab.weatherapplication.core.functional.Resource
 import kz.onelab.weatherapplication.data.repository.toPresentation
 import kz.onelab.weatherapplication.databinding.FragmentWeatherInfoBinding
-import kz.onelab.weatherapplication.presentation.WeatherInfoFragmentDirections
 
 @AndroidEntryPoint
 class WeatherInfoFragment : Fragment() {
@@ -49,47 +49,59 @@ class WeatherInfoFragment : Fragment() {
             )
         }
         setUpData()
-        setUpLoader()
-        setUpError()
+//        setUpLoader()
+//        setUpError()
     }
 
 
-    private fun setUpError() {
-        viewModel.exceptionLiveData.observe(viewLifecycleOwner) {
-            Toast.makeText(this.context, it, Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    private fun setUpLoader() {
-        viewModel.loadingLiveData.observe(viewLifecycleOwner) {
-            binding.loading.isVisible = it
-        }
-    }
+//    private fun setUpError() {
+//        viewModel.exceptionLiveData.observe(viewLifecycleOwner) {
+//            Toast.makeText(this.context, it, Toast.LENGTH_SHORT).show()
+//        }
+//    }
+//
+//    private fun setUpLoader() {
+//        viewModel.loadingLiveData.observe(viewLifecycleOwner) {
+//            binding.loading.isVisible = it
+//        }
+//    }
 
     @SuppressLint("SetTextI18n")
     private fun setUpData() {
-        viewModel.currentWeatherLiveData.observe(viewLifecycleOwner) { weatherResponse ->
-            val weatherInfo = weatherResponse?.toPresentation()
-            with(binding) {
-                weatherBox.isVisible = weatherInfo != null
+        viewModel.currentWeatherLiveData.observe(viewLifecycleOwner) { resource ->
 
-                city.text = "City: ${weatherInfo?.name}"
-                region.text = "Region: ${weatherInfo?.region}"
-                country.text = "Country: ${weatherInfo?.country}"
-                coords.text = "Coords: ${weatherInfo?.lat}, ${weatherInfo?.lon}"
-                timeZone.text = "Time zone: ${weatherInfo?.timeZone}"
-                localTime.text = "Time: ${weatherInfo?.localtime?.getDateTime()}"
+            when (resource) {
+                is Resource.Success -> {
+                    val weatherInfo = resource.data
+                    with(binding) {
+                        weatherBox.isVisible = weatherInfo != null
 
-                lastUpdate.text = "Last update: ${weatherInfo?.lastUpdate?.getDateTime()}"
-                temp.text = "Temperature: ${weatherInfo?.temp}"
-                isDay.text = "Is day: ${if (weatherInfo?.isDay == 1) "true" else "false"}"
-                wind.text = "Wind: ${weatherInfo?.wind}"
-                windDegree.text = "Wind degree: ${weatherInfo?.windDegree}"
-                windDirection.text = "Wind direction: ${weatherInfo?.windDirection}"
-                conditionText.text = weatherInfo?.condition?.text
+                        city.text = "City: ${weatherInfo?.name}"
+                        region.text = "Region: ${weatherInfo?.region}"
+                        country.text = "Country: ${weatherInfo?.country}"
+                        coords.text = "Coords: ${weatherInfo?.lat}, ${weatherInfo?.lon}"
+                        timeZone.text = "Time zone: ${weatherInfo?.timeZone}"
+                        localTime.text = "Time: ${weatherInfo?.localtime?.getDateTime()}"
 
-                Glide.with(this@WeatherInfoFragment).load("https:${weatherInfo?.condition?.icon}")
-                    .into(conditionIcon)
+                        lastUpdate.text = "Last update: ${weatherInfo?.lastUpdate?.getDateTime()}"
+                        temp.text = "Temperature: ${weatherInfo?.temp}"
+                        isDay.text = "Is day: ${if (weatherInfo?.isDay == 1) "true" else "false"}"
+                        wind.text = "Wind: ${weatherInfo?.wind}"
+                        windDegree.text = "Wind degree: ${weatherInfo?.windDegree}"
+                        windDirection.text = "Wind direction: ${weatherInfo?.windDirection}"
+                        conditionText.text = weatherInfo?.condition?.text
+
+                        Glide.with(this@WeatherInfoFragment)
+                            .load("https:${weatherInfo?.condition?.icon}")
+                            .into(conditionIcon)
+                    }
+                }
+
+                is Resource.Error -> {
+                    Toast.makeText(this.context, resource.exception.toString(), Toast.LENGTH_SHORT).show()
+                }
+
+                else -> Unit
             }
         }
     }

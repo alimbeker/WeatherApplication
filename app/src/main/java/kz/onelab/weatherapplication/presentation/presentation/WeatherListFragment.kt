@@ -34,9 +34,9 @@ class WeatherListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
         val args = WeatherListFragmentArgs.fromBundle(requireArguments())
-        viewModel.getAllData(args.city)
+
         setupRecyclerView()
-        setUpError()
+//        setUpError()
         viewModel.weatherListLiveData.observe(viewLifecycleOwner) { newWeather ->
             newWeather?.let {
                 weatherList.add(it)
@@ -45,11 +45,11 @@ class WeatherListFragment : Fragment() {
         }
     }
 
-    private fun setUpError() {
-        viewModel.exceptionLiveData.observe(viewLifecycleOwner) {
-            Toast.makeText(this.context, it, Toast.LENGTH_SHORT).show()
-        }
-    }
+//    private fun setUpError() {
+//        viewModel.exceptionLiveData.observe(viewLifecycleOwner) {
+//            Toast.makeText(this.context, it, Toast.LENGTH_SHORT).show()
+//        }
+//    }
 
     private fun setupRecyclerView() {
         adapter = WeatherAdapter()
