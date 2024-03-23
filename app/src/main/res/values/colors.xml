@@ -3,4 +3,5 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="mainNemo">#2D72E5</color>
+    <color name="wind_color">#EBEBF599</color>
 </resources>

@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginStart="25dp"
     android:layout_marginEnd="33dp"
+    android:layout_marginBottom="15dp"
     android:background="@drawable/rectangle">
 
     <TextView
@@ -23,7 +24,7 @@
         android:layout_width="160dp"
         android:layout_height="160dp"
         android:layout_gravity="right"
-        android:layout_marginEnd="5dp"
+        android:scaleType="centerCrop"
         android:src="@drawable/moon_cloud" />
 
     <TextView
@@ -34,8 +35,8 @@
         android:layout_marginTop="134dp"
         android:layout_marginBottom="12.5dp"
         android:fontFamily="@font/sf_pro"
-        tools:text="Windy"
-        android:textColor="@color/white"
+        tools:text="24 km/h"
+        android:textColor="@color/wind_color"
         android:textSize="13sp" />
 
     <TextView
@@ -43,26 +44,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="150dp"
-        android:layout_marginBottom="13dp"
+        android:layout_marginTop="154dp"
         android:fontFamily="@font/sf_pro"
         tools:text="Montreal, Canada"
         android:textColor="@color/white"
         android:textSize="17sp" />
 
-    <TextView
-        android:id="@+id/daytime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:layout_marginTop="155dp"
-        android:layout_marginEnd="80dp"
-        android:layout_marginBottom="13dp"
-        android:fontFamily="@font/sf_pro"
-        tools:text="Day"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="13sp" />
     <TextView
         android:id="@+id/weatherCondition"
         android:layout_width="wrap_content"
@@ -70,7 +57,7 @@
         android:layout_gravity="right"
         android:layout_marginTop="155dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="13dp"
+        android:layout_marginBottom="20dp"
         android:fontFamily="@font/sf_pro"
         tools:text="Clear"
         android:textAllCaps="false"
