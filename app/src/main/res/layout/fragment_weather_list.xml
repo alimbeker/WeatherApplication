@@ -3,7 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_weather_list"
     tools:context=".presentation.presentation.WeatherListFragment">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/weather"
+        android:textColor="@color/white"
+        android:textSize="28sp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="9dp"
+        />
 
     <ProgressBar
         android:id="@+id/loading"
@@ -16,6 +27,7 @@
         android:id="@+id/weatherRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="40dp"
         android:padding="8dp"
         />
 

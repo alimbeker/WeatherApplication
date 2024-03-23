@@ -4,14 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/background_weather_list"
     android:orientation="vertical">
 
   <com.google.android.material.textfield.TextInputLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_margin="16dp"
-      android:hint="Input city name"
+      android:hint="@string/input_city_name"
+      android:fontFamily="@font/sf_pro"
+      android:textColorHint="#EBEBF5"
+      android:background="@color/search_background"
       app:boxBackgroundMode="outline"
       app:boxStrokeColor="@color/mainNemo"
       app:boxStrokeWidth="2dp">
@@ -30,6 +33,7 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginHorizontal="16dp"
+      android:fontFamily="@font/sf_pro"
       android:text="@string/get_current_weather"
       android:gravity="center"
       android:textAllCaps="true" />
@@ -40,6 +44,7 @@
       android:layout_height="wrap_content"
       android:layout_marginHorizontal="16dp"
       android:text="navigate"
+      android:fontFamily="@font/sf_pro"
       android:gravity="center"
       android:textAllCaps="true" />
 

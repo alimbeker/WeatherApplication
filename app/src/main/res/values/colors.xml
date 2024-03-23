@@ -4,4 +4,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="mainNemo">#2D72E5</color>
     <color name="wind_color">#EBEBF599</color>
+    <color name="background_weather_list">#191f45</color>
+    <color name="search_background">#2E335A</color>
 </resources>

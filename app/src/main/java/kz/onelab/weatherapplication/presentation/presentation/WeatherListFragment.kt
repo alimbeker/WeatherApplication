@@ -12,6 +12,7 @@ import kz.onelab.weatherapplication.core.functional.Resource
 import kz.onelab.weatherapplication.presentation.presentation.adapter.WeatherAdapter
 import kz.onelab.weatherapplication.databinding.FragmentWeatherListBinding
 import kz.onelab.weatherapplication.presentation.model.WeatherList
+import kz.onelab.weatherapplication.presentation.presentation.decoration.OffsetDecoration
 
 
 @AndroidEntryPoint
@@ -60,6 +61,9 @@ class WeatherListFragment : BaseFragment<FragmentWeatherListBinding>(FragmentWea
             layoutManager = LinearLayoutManager(context)
             adapter = this@WeatherListFragment.adapter
             setHasFixedSize(true)
+
+            val offsetDecoration = OffsetDecoration(start = 4, top = 20, end = 2, bottom = 16)
+            binding.weatherRecyclerView.addItemDecoration(offsetDecoration)
         }
     }
 
