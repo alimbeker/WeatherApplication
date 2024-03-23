@@ -1,15 +1,13 @@
 package kz.onelab.weatherapplication.presentation.presentation
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
+import kz.onelab.weatherapplication.core.BaseFragment
 import kz.onelab.weatherapplication.core.functional.Resource
 import kz.onelab.weatherapplication.presentation.presentation.adapter.WeatherAdapter
 import kz.onelab.weatherapplication.databinding.FragmentWeatherListBinding
@@ -17,19 +15,9 @@ import kz.onelab.weatherapplication.presentation.model.WeatherList
 
 
 @AndroidEntryPoint
-class WeatherListFragment : Fragment() {
-    private lateinit var binding: FragmentWeatherListBinding
+class WeatherListFragment : BaseFragment<FragmentWeatherListBinding>(FragmentWeatherListBinding::inflate) {
     private lateinit var adapter: WeatherAdapter
     private lateinit var viewModel: MainViewModel
-
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentWeatherListBinding.inflate(inflater, container, false)
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
