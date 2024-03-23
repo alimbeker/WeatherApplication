@@ -49,22 +49,9 @@ class WeatherInfoFragment : Fragment() {
             )
         }
         setUpData()
-//        setUpLoader()
-//        setUpError()
+
     }
 
-
-//    private fun setUpError() {
-//        viewModel.exceptionLiveData.observe(viewLifecycleOwner) {
-//            Toast.makeText(this.context, it, Toast.LENGTH_SHORT).show()
-//        }
-//    }
-//
-//    private fun setUpLoader() {
-//        viewModel.loadingLiveData.observe(viewLifecycleOwner) {
-//            binding.loading.isVisible = it
-//        }
-//    }
 
     @SuppressLint("SetTextI18n")
     private fun setUpData() {
@@ -74,6 +61,7 @@ class WeatherInfoFragment : Fragment() {
                 is Resource.Loading -> {
                     binding.loading.isVisible = true
                 }
+
                 is Resource.Success -> {
                     binding.loading.isVisible = false
 
@@ -105,7 +93,8 @@ class WeatherInfoFragment : Fragment() {
                 is Resource.Error -> {
                     binding.loading.isVisible = false
 
-                    Toast.makeText(this.context, resource.exception.toString(), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this.context, resource.exception.toString(), Toast.LENGTH_SHORT)
+                        .show()
                 }
 
                 else -> Unit
