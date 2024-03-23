@@ -26,7 +26,7 @@ class WeatherListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentWeatherListBinding.inflate(inflater,container,false)
+        binding = FragmentWeatherListBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -38,12 +38,16 @@ class WeatherListFragment : Fragment() {
         setupRecyclerView()
 
         viewModel.weatherListLiveData.observe(viewLifecycleOwner) { resource ->
-            when(resource) {
+            when (resource) {
                 is Resource.Success -> {
+                    val weatherData = resource.data
+                    weatherData?.let { weatherList.add(weatherData) }
                     adapter.submitList(weatherList)
                 }
+
                 is Resource.Error -> {
-                    Toast.makeText(this.context, resource.exception.toString(), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this.context, resource.exception.toString(), Toast.LENGTH_SHORT)
+                        .show()
                 }
 
                 else -> Unit
