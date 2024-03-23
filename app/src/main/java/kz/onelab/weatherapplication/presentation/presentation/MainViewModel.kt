@@ -29,13 +29,6 @@ class MainViewModel @Inject constructor(
 
     private var _weatherListLiveData = MutableLiveData<WeatherResponse?>()
     val weatherListLiveData: LiveData<WeatherResponse?> = _weatherListLiveData
-//    fun getCurrentWeather(city: String) {
-//        launch(request = {
-//            repository.getCurrentWeather(city)
-//        }, onSuccess = {
-//            _currentWeatherLiveData.postValue(it)
-//        })
-//    }
 
     fun getCurrentWeather(city: String) {
         _currentWeatherLiveData.value = Resource.Loading

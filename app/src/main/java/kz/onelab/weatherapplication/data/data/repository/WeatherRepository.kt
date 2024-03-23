@@ -21,4 +21,10 @@ class WeatherRepository @Inject constructor(
             api.getCurrentWeather(city = city, language = "en").toPresentation()
         }
     }
+
+    suspend fun getAllData(city: String): State<Throwable, WeatherInfo> = apiCall {
+        withContext(Dispatchers.IO) {
+            api.getAllData(city = city, language = "en").toPresentation()
+        }
+    }
 }

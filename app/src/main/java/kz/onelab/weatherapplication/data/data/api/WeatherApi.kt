@@ -24,6 +24,6 @@ interface WeatherApi {
         @Query("key") key: String = BuildConfig.WEATHER_API_KEY,
         @Query("q") city: String,
         @Query("lang") language: String,
-    ): Response<WeatherResponse>
+    ): WeatherResponse
 
 }

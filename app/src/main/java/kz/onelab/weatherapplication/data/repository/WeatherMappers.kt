@@ -2,6 +2,7 @@ package kz.onelab.weatherapplication.data.repository
 
 import kz.onelab.weatherapplication.data.model.WeatherResponse
 import kz.onelab.weatherapplication.presentation.model.WeatherInfo
+import kz.onelab.weatherapplication.presentation.model.WeatherList
 
 // здесь мапишь нужные поля в WeatherInfo
 //сделано
@@ -21,4 +22,15 @@ fun WeatherResponse.toPresentation(): WeatherInfo = WeatherInfo(
     windDirection = current?.windDirection,
     condition = current?.condition,
 )
+
+fun WeatherResponse.toAdapter(): WeactherList = WeatherList(
+    name = location?.name,
+    region = location?.region,
+    country = location?.country,
+    temp = current?.temp,
+    isDay = current?.isDay,
+    wind = current?.wind,
+    condition = current?.condition,
+)
+
 
