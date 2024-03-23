@@ -31,7 +31,6 @@ class WeatherAdapter :
                 location.text = "${weather.name}, ${weather.country}"
                 temperature.text = "${weather.temp}°"
                 wind.text = "Wind: ${weather.wind} km/h"
-                daytime.text = if (weather.isDay == 1) "day" else "night"
                 weatherCondition.text = weather.condition?.text
                 Glide.with(binding.root.context)
                     .load("https:${weather.condition?.icon}")

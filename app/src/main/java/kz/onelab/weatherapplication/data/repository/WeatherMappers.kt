@@ -28,7 +28,6 @@ fun WeatherResponse.toAdapter(): WeatherList = WeatherList(
     region = location?.region,
     country = location?.country,
     temp = current?.temp,
-    isDay = current?.isDay,
     wind = current?.wind,
     condition = current?.condition,
 )

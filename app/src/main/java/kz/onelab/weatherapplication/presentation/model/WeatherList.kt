@@ -7,7 +7,6 @@ data class WeatherList(
     val region: String? = null,
     val country: String? = null,
     val temp: Double? = null,
-    val isDay: Int? = null,
     val wind: Double? = null,
     val condition: WeatherCondition? = null
 )

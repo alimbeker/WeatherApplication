@@ -17,7 +17,10 @@ class WeatherRepository @Inject constructor(
 ) : BaseRepository() {
 
     //посмотри примеры прошлого урока (5 урок)
+    //сделано
+
     //если пример с бд с кэшированием то 8 урок
+    //
     suspend fun getCurrentWeather(city: String): State<Throwable, WeatherInfo> = apiCall {
         withContext(Dispatchers.IO) {
             api.getCurrentWeather(city = city, language = "en").toPresentation()
