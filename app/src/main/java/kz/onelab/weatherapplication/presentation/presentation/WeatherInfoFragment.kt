@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import androidx.navigation.fragment.findNavController
-import kz.onelab.weatherapplication.core.BaseFragment
+import kz.onelab.weatherapplication.core.base.BaseFragment
 import kz.onelab.weatherapplication.core.functional.Resource
 import kz.onelab.weatherapplication.databinding.FragmentWeatherInfoBinding
 

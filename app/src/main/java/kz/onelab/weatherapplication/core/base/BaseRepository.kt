@@ -1,4 +1,4 @@
-package kz.onelab.weatherapplication.core
+package kz.onelab.weatherapplication.core.base
 
 import android.util.Log
 import kz.onelab.weatherapplication.core.functional.State

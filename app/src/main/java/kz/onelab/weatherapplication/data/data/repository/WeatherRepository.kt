@@ -2,7 +2,7 @@ package kz.onelab.weatherapplication.data.data.repository
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import kz.onelab.weatherapplication.core.BaseRepository
+import kz.onelab.weatherapplication.core.base.BaseRepository
 import kz.onelab.weatherapplication.core.functional.State
 import kz.onelab.weatherapplication.data.api.WeatherApi
 import kz.onelab.weatherapplication.data.repository.toAdapter

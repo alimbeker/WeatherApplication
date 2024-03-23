@@ -7,7 +7,7 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
-import kz.onelab.weatherapplication.core.BaseFragment
+import kz.onelab.weatherapplication.core.base.BaseFragment
 import kz.onelab.weatherapplication.core.functional.Resource
 import kz.onelab.weatherapplication.presentation.presentation.adapter.WeatherAdapter
 import kz.onelab.weatherapplication.databinding.FragmentWeatherListBinding
