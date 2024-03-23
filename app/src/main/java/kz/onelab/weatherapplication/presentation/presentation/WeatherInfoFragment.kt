@@ -71,7 +71,12 @@ class WeatherInfoFragment : Fragment() {
         viewModel.currentWeatherLiveData.observe(viewLifecycleOwner) { resource ->
 
             when (resource) {
+                is Resource.Loading -> {
+                    binding.loading.isVisible = true
+                }
                 is Resource.Success -> {
+                    binding.loading.isVisible = false
+
                     val weatherInfo = resource.data
                     with(binding) {
                         weatherBox.isVisible = weatherInfo != null
@@ -98,6 +103,8 @@ class WeatherInfoFragment : Fragment() {
                 }
 
                 is Resource.Error -> {
+                    binding.loading.isVisible = false
+
                     Toast.makeText(this.context, resource.exception.toString(), Toast.LENGTH_SHORT).show()
                 }
 

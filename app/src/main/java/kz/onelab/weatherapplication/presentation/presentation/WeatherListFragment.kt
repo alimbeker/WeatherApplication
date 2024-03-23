@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
@@ -39,13 +40,21 @@ class WeatherListFragment : Fragment() {
 
         viewModel.weatherListLiveData.observe(viewLifecycleOwner) { resource ->
             when (resource) {
+                is Resource.Loading -> {
+                    binding.loading.isVisible = true
+                }
+
                 is Resource.Success -> {
+                    binding.loading.isVisible = false
+
                     val weatherData = resource.data
                     weatherData?.let { weatherList.add(weatherData) }
                     adapter.submitList(weatherList)
                 }
 
                 is Resource.Error -> {
+                    binding.loading.isVisible = false
+
                     Toast.makeText(this.context, resource.exception.toString(), Toast.LENGTH_SHORT)
                         .show()
                 }
@@ -55,11 +64,6 @@ class WeatherListFragment : Fragment() {
         }
     }
 
-//    private fun setUpError() {
-//        viewModel.exceptionLiveData.observe(viewLifecycleOwner) {
-//            Toast.makeText(this.context, it, Toast.LENGTH_SHORT).show()
-//        }
-//    }
 
     private fun setupRecyclerView() {
         adapter = WeatherAdapter()
