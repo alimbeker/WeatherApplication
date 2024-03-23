@@ -35,6 +35,7 @@ class WeatherAdapter :
                 Glide.with(binding.root.context)
                     .load("https:${weather.condition?.icon}")
                     .into(weatherConditionIcon)
+
             }
         }
     }

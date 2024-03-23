@@ -11,8 +11,8 @@ import kz.onelab.weatherapplication.core.base.BaseFragment
 import kz.onelab.weatherapplication.core.functional.Resource
 import kz.onelab.weatherapplication.presentation.presentation.adapter.WeatherAdapter
 import kz.onelab.weatherapplication.databinding.FragmentWeatherListBinding
+import kz.onelab.weatherapplication.presentation.decoration.OffsetDecoration
 import kz.onelab.weatherapplication.presentation.model.WeatherList
-import kz.onelab.weatherapplication.presentation.presentation.decoration.OffsetDecoration
 
 
 @AndroidEntryPoint
