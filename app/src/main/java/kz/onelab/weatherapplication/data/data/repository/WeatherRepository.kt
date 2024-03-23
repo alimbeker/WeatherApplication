@@ -5,8 +5,10 @@ import kotlinx.coroutines.withContext
 import kz.onelab.weatherapplication.core.BaseRepository
 import kz.onelab.weatherapplication.core.functional.State
 import kz.onelab.weatherapplication.data.api.WeatherApi
+import kz.onelab.weatherapplication.data.repository.toAdapter
 import kz.onelab.weatherapplication.data.repository.toPresentation
 import kz.onelab.weatherapplication.presentation.model.WeatherInfo
+import kz.onelab.weatherapplication.presentation.model.WeatherList
 import javax.inject.Inject
 
 
@@ -22,9 +24,9 @@ class WeatherRepository @Inject constructor(
         }
     }
 
-    suspend fun getAllData(city: String): State<Throwable, WeatherInfo> = apiCall {
+    suspend fun getAllData(city: String): State<Throwable, WeatherList> = apiCall {
         withContext(Dispatchers.IO) {
-            api.getAllData(city = city, language = "en").toPresentation()
+            api.getAllData(city = city, language = "en").toAdapter()
         }
     }
 }

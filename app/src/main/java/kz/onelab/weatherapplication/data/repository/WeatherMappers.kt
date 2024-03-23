@@ -23,7 +23,7 @@ fun WeatherResponse.toPresentation(): WeatherInfo = WeatherInfo(
     condition = current?.condition,
 )
 
-fun WeatherResponse.toAdapter(): WeactherList = WeatherList(
+fun WeatherResponse.toAdapter(): WeatherList = WeatherList(
     name = location?.name,
     region = location?.region,
     country = location?.country,

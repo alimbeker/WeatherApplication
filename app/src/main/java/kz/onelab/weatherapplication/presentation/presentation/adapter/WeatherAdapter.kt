@@ -7,12 +7,12 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import kz.onelab.weatherapplication.data.model.WeatherResponse
 import kz.onelab.weatherapplication.databinding.ViewToolbarBinding
+import kz.onelab.weatherapplication.presentation.model.WeatherList
 
 
 class WeatherAdapter :
-    ListAdapter<WeatherResponse, WeatherAdapter.WeatherViewHolder>(WeatherDiffCallback()) {
+    ListAdapter<WeatherList, WeatherAdapter.WeatherViewHolder>(WeatherDiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeatherViewHolder {
         val binding = ViewToolbarBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return WeatherViewHolder(binding)
@@ -26,29 +26,27 @@ class WeatherAdapter :
     inner class WeatherViewHolder(private val binding: ViewToolbarBinding) :
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
-        fun bind(weather: WeatherResponse) {
+        fun bind(weather: WeatherList) {
             binding.apply {
-                location.text = "${weather.location?.name}, ${weather.location?.country}"
-                temperature.text = "${weather.current?.temp}°"
-                wind.text = "Wind: ${weather.current?.wind} km/h"
-                daytime.text = if (weather.current?.isDay == 1) "day" else "night"
-                weatherCondition.text = weather.current?.condition?.text
+                location.text = "${weather.name}, ${weather.country}"
+                temperature.text = "${weather.temp}°"
+                wind.text = "Wind: ${weather.wind} km/h"
+                daytime.text = if (weather.isDay == 1) "day" else "night"
+                weatherCondition.text = weather.condition?.text
                 Glide.with(binding.root.context)
-                    .load("https:${weather.current?.condition?.icon}")
+                    .load("https:${weather.condition?.icon}")
                     .into(weatherConditionIcon)
             }
-
         }
     }
-
 }
 
-class WeatherDiffCallback : DiffUtil.ItemCallback<WeatherResponse>() {
-    override fun areItemsTheSame(oldItem: WeatherResponse, newItem: WeatherResponse): Boolean {
-        return oldItem.location?.name == newItem.location?.name
+class WeatherDiffCallback : DiffUtil.ItemCallback<WeatherList>() {
+    override fun areItemsTheSame(oldItem: WeatherList, newItem: WeatherList): Boolean {
+        return oldItem.name == newItem.name
     }
 
-    override fun areContentsTheSame(oldItem: WeatherResponse, newItem: WeatherResponse): Boolean {
+    override fun areContentsTheSame(oldItem: WeatherList, newItem: WeatherList): Boolean {
         return oldItem == newItem
     }
 }

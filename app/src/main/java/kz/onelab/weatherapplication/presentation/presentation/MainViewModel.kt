@@ -16,6 +16,7 @@ import kz.onelab.weatherapplication.core.functional.onSuccess
 import kz.onelab.weatherapplication.data.model.WeatherResponse
 import kz.onelab.weatherapplication.data.data.repository.WeatherRepository
 import kz.onelab.weatherapplication.presentation.model.WeatherInfo
+import kz.onelab.weatherapplication.presentation.model.WeatherList
 import javax.inject.Inject
 
 @HiltViewModel
@@ -27,8 +28,8 @@ class MainViewModel @Inject constructor(
     private var _currentWeatherLiveData = MutableLiveData<Resource<WeatherInfo?>>()
     val currentWeatherLiveData: LiveData<Resource<WeatherInfo?>> = _currentWeatherLiveData
 
-    private var _weatherListLiveData = MutableLiveData<WeatherResponse?>()
-    val weatherListLiveData: LiveData<WeatherResponse?> = _weatherListLiveData
+    private var _weatherListLiveData = MutableLiveData<Resource<WeatherList?>>()
+    val weatherListLiveData: LiveData<Resource<WeatherList?>> = _weatherListLiveData
 
     fun getCurrentWeather(city: String) {
         _currentWeatherLiveData.value = Resource.Loading
@@ -39,6 +40,20 @@ class MainViewModel @Inject constructor(
                 }
                 .onSuccess { weatherData ->
                     _currentWeatherLiveData.value = Resource.Success(weatherData)
+                }
+        }
+    }
+
+
+    fun getAllData(city: String) {
+        _weatherListLiveData.value = Resource.Loading
+        viewModelScope.launch {
+            repository.getAllData(city)
+                .onFailure { throwable ->
+                    _weatherListLiveData.value = Resource.Error(throwable)
+                }
+                .onSuccess { weatherData ->
+                    _weatherListLiveData.value = Resource.Success(weatherData)
                 }
         }
     }

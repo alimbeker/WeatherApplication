@@ -1,4 +1,4 @@
-package kz.onelab.weatherapplication.presentation
+package kz.onelab.weatherapplication.presentation.presentation
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,10 +9,10 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
+import kz.onelab.weatherapplication.core.functional.Resource
 import kz.onelab.weatherapplication.presentation.presentation.adapter.WeatherAdapter
-import kz.onelab.weatherapplication.data.model.WeatherResponse
 import kz.onelab.weatherapplication.databinding.FragmentWeatherListBinding
-import kz.onelab.weatherapplication.presentation.presentation.MainViewModel
+import kz.onelab.weatherapplication.presentation.model.WeatherList
 
 
 @AndroidEntryPoint
@@ -34,13 +34,19 @@ class WeatherListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
         val args = WeatherListFragmentArgs.fromBundle(requireArguments())
-
+        viewModel.getAllData(args.city)
         setupRecyclerView()
-//        setUpError()
-        viewModel.weatherListLiveData.observe(viewLifecycleOwner) { newWeather ->
-            newWeather?.let {
-                weatherList.add(it)
-                adapter.submitList(weatherList)
+
+        viewModel.weatherListLiveData.observe(viewLifecycleOwner) { resource ->
+            when(resource) {
+                is Resource.Success -> {
+                    adapter.submitList(weatherList)
+                }
+                is Resource.Error -> {
+                    Toast.makeText(this.context, resource.exception.toString(), Toast.LENGTH_SHORT).show()
+                }
+
+                else -> Unit
             }
         }
     }
@@ -62,7 +68,7 @@ class WeatherListFragment : Fragment() {
     }
 
     companion object {
-        val weatherList = mutableListOf<WeatherResponse>()
+        val weatherList = mutableListOf<WeatherList>()
     }
 
 }
