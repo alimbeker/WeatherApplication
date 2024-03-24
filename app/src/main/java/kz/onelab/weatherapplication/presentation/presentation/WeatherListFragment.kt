@@ -36,11 +36,15 @@ class WeatherListFragment : BaseFragment<FragmentWeatherListBinding>(FragmentWea
 
     }
     private fun adapterItemClick() {
-        adapter.itemClick = {
+        adapter.itemClick = { weather ->
             findNavController().navigate(
-                WeatherListFragmentDirections()
+                WeatherListFragmentDirections.actionWeatherListFragmentToDetailedFragment(
+                    weather.name!!,
+                    weather.temp!!.toString(),
+                    weather.condition?.text!!,
+                    weather.wind!!.toString(),
+                )
             )
-
         }
     }
     private fun observeWeatherListLiveData() {

@@ -24,15 +24,25 @@
             android:name="city"
             app:argType="string" />
         <action
-            android:id="@+id/action_weatherListFragment_to_weatherInfoFragment"
-            app:destination="@id/weatherInfoFragment" />
-        <action
-            android:id="@+id/action_weatherListFragment_to_detailedFragment2"
+            android:id="@+id/action_weatherListFragment_to_detailedFragment"
             app:destination="@id/detailedFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailedFragment"
         android:name="kz.onelab.weatherapplication.presentation.presentation.DetailedFragment"
         android:label="DetailedFragment"
-        tools:layout="@layout/fragment_detailed"/>
+        tools:layout="@layout/fragment_detailed">
+    <argument
+        android:name="city"
+        app:argType="string" />
+    <argument
+        android:name="temperature"
+        app:argType="string" />
+    <argument
+        android:name="weatherCondition"
+        app:argType="string" />
+    <argument
+        android:name="windSpeed"
+        app:argType="string" />
+    </fragment>
 </navigation>
