@@ -40,9 +40,7 @@ class WeatherAdapter :
             }
 
             itemView.setOnClickListener {
-                weather?.let {
-                    itemClick?.invoke(weather)
-                }
+                itemClick?.invoke(weather)
             }
         }
     }
