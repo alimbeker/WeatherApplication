@@ -26,5 +26,13 @@
         <action
             android:id="@+id/action_weatherListFragment_to_weatherInfoFragment"
             app:destination="@id/weatherInfoFragment" />
+        <action
+            android:id="@+id/action_weatherListFragment_to_detailedFragment2"
+            app:destination="@id/detailedFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/detailedFragment"
+        android:name="kz.onelab.weatherapplication.presentation.presentation.DetailedFragment"
+        android:label="DetailedFragment"
+        tools:layout="@layout/fragment_detailed"/>
 </navigation>

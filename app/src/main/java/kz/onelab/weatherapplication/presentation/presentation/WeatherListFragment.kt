@@ -13,6 +13,7 @@ import kz.onelab.weatherapplication.presentation.presentation.adapter.WeatherAda
 import kz.onelab.weatherapplication.databinding.FragmentWeatherListBinding
 import kz.onelab.weatherapplication.presentation.decoration.OffsetDecoration
 import kz.onelab.weatherapplication.presentation.model.WeatherList
+import androidx.navigation.fragment.findNavController
 
 
 @AndroidEntryPoint
@@ -31,8 +32,17 @@ class WeatherListFragment : BaseFragment<FragmentWeatherListBinding>(FragmentWea
 
         observeWeatherListLiveData()
 
-    }
+        adapterItemClick()
 
+    }
+    private fun adapterItemClick() {
+        adapter.itemClick = {
+            findNavController().navigate(
+                WeatherListFragmentDirections()
+            )
+
+        }
+    }
     private fun observeWeatherListLiveData() {
         viewModel.weatherListLiveData.observe(viewLifecycleOwner) { resource ->
             when (resource) {
