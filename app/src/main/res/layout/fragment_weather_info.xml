@@ -12,7 +12,7 @@
       android:layout_height="wrap_content"
       android:layout_margin="16dp"
       android:hint="@string/input_city_name"
-      android:fontFamily="@font/sf_pro"
+      android:fontFamily="@font/sf_pro_regular"
       android:textColorHint="#EBEBF5"
       android:background="@color/search_background"
       app:boxBackgroundMode="outline"
@@ -33,7 +33,7 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginHorizontal="16dp"
-      android:fontFamily="@font/sf_pro"
+      android:fontFamily="@font/sf_pro_regular"
       android:text="@string/get_current_weather"
       android:gravity="center"
       android:textAllCaps="true" />
@@ -44,7 +44,7 @@
       android:layout_height="wrap_content"
       android:layout_marginHorizontal="16dp"
       android:text="navigate"
-      android:fontFamily="@font/sf_pro"
+      android:fontFamily="@font/sf_pro_regular"
       android:gravity="center"
       android:textAllCaps="true" />
 

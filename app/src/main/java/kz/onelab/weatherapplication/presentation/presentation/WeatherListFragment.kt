@@ -24,9 +24,16 @@ class WeatherListFragment : BaseFragment<FragmentWeatherListBinding>(FragmentWea
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
         val args = WeatherListFragmentArgs.fromBundle(requireArguments())
+
         viewModel.getAllData(args.city)
+
         setupRecyclerView()
 
+        observeWeatherListLiveData()
+
+    }
+
+    private fun observeWeatherListLiveData() {
         viewModel.weatherListLiveData.observe(viewLifecycleOwner) { resource ->
             when (resource) {
                 is Resource.Loading -> {
@@ -52,7 +59,6 @@ class WeatherListFragment : BaseFragment<FragmentWeatherListBinding>(FragmentWea
             }
         }
     }
-
 
     private fun setupRecyclerView() {
         adapter = WeatherAdapter()

@@ -13,6 +13,7 @@ import kz.onelab.weatherapplication.presentation.model.WeatherList
 
 class WeatherAdapter :
     ListAdapter<WeatherList, WeatherAdapter.WeatherViewHolder>(WeatherDiffCallback()) {
+    var itemClick: ((WeatherList) -> Unit)? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeatherViewHolder {
         val binding = ViewToolbarBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return WeatherViewHolder(binding)
@@ -36,6 +37,10 @@ class WeatherAdapter :
                     .load("https:${weather.condition?.icon}")
                     .into(weatherConditionIcon)
 
+            }
+
+            itemView.setOnClickListener {
+                itemClick?.invoke(weather)
             }
         }
     }
