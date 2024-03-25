@@ -106,4 +106,9 @@ dependencies {
     // Jetpack Compose Integration
     implementation("androidx.navigation:navigation-compose:$nav_version")
 
+    //Room Library
+    implementation ("androidx.room:room-runtime:2.2.6")
+    implementation ("androidx.room:room-ktx:2.2.6")
+    kapt ("androidx.room:room-compiler:2.2.6")
+
 }
