@@ -1,5 +1,6 @@
 package kz.onelab.weatherapplication.presentation.presentation
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -14,10 +15,13 @@ import kz.onelab.weatherapplication.databinding.FragmentWeatherListBinding
 import kz.onelab.weatherapplication.presentation.decoration.OffsetDecoration
 import kz.onelab.weatherapplication.presentation.model.WeatherList
 import androidx.navigation.fragment.findNavController
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
 
 
 @AndroidEntryPoint
-class WeatherListFragment : BaseFragment<FragmentWeatherListBinding>(FragmentWeatherListBinding::inflate) {
+class WeatherListFragment :
+    BaseFragment<FragmentWeatherListBinding>(FragmentWeatherListBinding::inflate) {
     private lateinit var adapter: WeatherAdapter
     private lateinit var viewModel: MainViewModel
 
@@ -35,6 +39,7 @@ class WeatherListFragment : BaseFragment<FragmentWeatherListBinding>(FragmentWea
         adapterItemClick()
 
     }
+
     private fun adapterItemClick() {
         adapter.itemClick = { weather ->
             findNavController().navigate(
@@ -47,6 +52,7 @@ class WeatherListFragment : BaseFragment<FragmentWeatherListBinding>(FragmentWea
             )
         }
     }
+
     private fun observeWeatherListLiveData() {
         viewModel.weatherListLiveData.observe(viewLifecycleOwner) { resource ->
             when (resource) {
@@ -58,7 +64,11 @@ class WeatherListFragment : BaseFragment<FragmentWeatherListBinding>(FragmentWea
                     binding.loading.isVisible = false
 
                     val weatherData = resource.data
-                    weatherData?.let { weatherList.add(weatherData) }
+                    weatherData?.let {
+                        if (!weatherList.contains(weatherData)) {
+                            weatherList.add(weatherData)
+                        }
+                    }
                     adapter.submitList(weatherList)
                 }
 
